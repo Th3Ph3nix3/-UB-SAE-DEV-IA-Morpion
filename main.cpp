@@ -1,10 +1,10 @@
 #include"morpion.h"
 
 int main() {
-
+	srand(time(NULL));
 	char ** tab;
-	int size = 3 ; //20;
-	int nbPion = 3 ; //5;
+	int size = 10;
+	int nbPion = 5;
 	
 	init_morpion(tab,size);
 	
@@ -29,19 +29,21 @@ int main() {
 				std::cout<<std::endl;
 				
 			} while(!estLibre_morpion(tab,size,x,y));
-		
-			placer_morpion(tab,size,x,y,pion);
+			placer_morpion(tab,size, x, y, pion);
 			affichage_morpion(tab,size);
 		}
 		
 		else{
+			cout << "L'IA réfléchi..." << endl;
 			jouer(tab, size, nbPion);
+			cout << "L'IA a fini de jouer" << endl;
 		}
 		
-		if(pion == 'O') alignement = victoire_morpion(tab,size,nbPion,'O');
+		if(pion == 'O')alignement = victoire_morpion(tab,size,nbPion,'O');
 		else if(pion == 'X') alignement = victoire_morpion(tab,size,nbPion,'X');
+		
 		nbPl++; 
 	}
-
+	affichage_morpion(tab,size);
 	delete_morpion(tab,size);
 }
